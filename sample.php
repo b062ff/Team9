@@ -40,12 +40,13 @@ while ($home = $result->fetch_array()) {      // 変更
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="src/index.js"></script>
     <title>サンプルほめ</title>
     <link href="src/style.css" rel="stylesheet" type="text/css" />
+    <script  type="text/javascript" src="src/index.js" charset="utf-8"></script>
     </head>
     <body>
       <h1>ほめほめ</h1>
+     
       <?php if($error_message){
           foreach($error_message as $error){
               echo($error);
@@ -81,27 +82,12 @@ while ($home = $result->fetch_array()) {      // 変更
       </form>
 
       <?php if($tosay){?>
-        <form class="input" id="voice-form">
-        <div class="field">
+      <form class="input" id="voice-form">
        <input type="hidden" name="speech" id="speech" value = <?php echo($tosay)?> />
-       </div>
-       <button>再生</button>
+       <input type="button" class="circlebutton" value="再生" onclick="ToSayClick();"/>
       </form>
         
         <?php } ?>
-
-      <script>
-        window.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('voice-form');
-        const input = document.getElementById('speech');
-        form.addEventListener('submit', event => {
-        event.preventDefault();
-        const toSay = input.value.trim();
-        const utterance = new SpeechSynthesisUtterance(toSay);
-        speechSynthesis.speak(utterance);
-        });
-    });
-    </script>
 
     </body>
 </html>
