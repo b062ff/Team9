@@ -8,6 +8,7 @@ $mysqli = new mysqli("localhost", "root", "", "home");
 $PageNum=2;
 
 
+
 //投稿されたときの処理(DBに保存)
 if(isset($_POST["save"])){
     $PageNum=$_POST["page"];
@@ -109,7 +110,7 @@ if(isset($_POST["back"])){
                     <option value="2">可愛い</option>
                 </select></p>
                 <h3>ピッチ</h3>
-                <p> <input type="number" name ="pich",value="1",step="0.1",min="-2",max="2"></p>               
+                <p> <input type="number" name ="pich",value="1",step="0.1",min="0",max="2"></p>               
                 <h3>セリフ</h3>
                 <p><textarea name="body" cols="50" rows="5"></textarea> </p>
                 <p><input name="save" type="submit" value="投稿する">
@@ -148,16 +149,16 @@ if(isset($_POST["back"])){
         <?php
         if($PageNum==4){
             echo("再生");?>
-
             <?php foreach($home_list as $home){ ?>
                 <div class="messa" style="text-align:center">
                 <?php echo($home["body"]);?>
                 </div>
                 <form id="voice-form"> 
-                    <input type="hidden" name="speech" id="speech" value = <?php echo($home["body"])?> />
-                    <input type="hidden" id="voicetype" value = <?php echo($VT)?> />
-                    <input type="hidden" id="selectNum" value>
-                    <input type="button" class="circlebutton" value="再生" onclick="ToSayClick();"/>
+                    <?php  
+                    $speech=$home["body"]; 
+                    $Pitch = $home["pich"];
+                    ?>
+                    <input type="button" class="circlebutton" value="再生" onclick="ToSayClick(<?php echo($VT); ?>,<?php echo($Pitch); ?>,'<?php echo($speech); ?>');"/>
                 </form>
             <?php } ?>
 
