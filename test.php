@@ -1,5 +1,4 @@
 <?php 
-
 error_reporting(E_ALL);              // エラー出力のレベルを設定します
 ini_set("display_errors", "On");     // 画面上にエラー出力を表示する設定にします
 $error_message = array();
@@ -66,6 +65,7 @@ if(isset($_POST["back"])){
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="src/style.css" rel="stylesheet" type="text/css" />
     <script  type="text/javascript" src="src/index.js" charset="utf-8"></script>
     <title>ほめstart</title>
     </head>
@@ -81,54 +81,68 @@ if(isset($_POST["back"])){
         <?php
         if($PageNum==2){
             echo("start your engine");?>
-            <form method="post" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
+            <form method="post" style="text-align:center" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
             <input type="hidden" name= "page" value=2>
-            <input name="next" type="submit" value="ほめられる">
-            <input name="back" type="submit" value="ほめる">
+            <p> <input name="next" type="submit" id="Btn1" value="ほめられる"></p>
+            <p> <input name="back" type="submit" id="Btn2" value="ほめる"></p>
             </form>
         <?php } ?>
+        
         <?php
         if($PageNum==1){
             echo("投稿");?>
-            <form method="post" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
+            <form method="post"  action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
+            <div style="text-align:center">
             <input type="hidden" name= "page" value=1>
-            <table>
-                <tr colspan="2">
-                    <th>ほめてみよう</th>
-                    <td colspan="2"><textarea name="body" cols="50" rows="5"></textarea></td>
-                </tr>
-                <tr>
-                    <th>ピッチ</th>
-                    <td><input type="number" name ="pich",value="1",step="0.1",min="-2",max="2"></td>
-                </tr>
-                <select name="VoiceType">
-                    <option value="1">男性</option>
-                    <option value="2">女性</option>
-                </select>
-                <select name="Situation">
+                <h3>声の種類</h3>
+               <p> <select name="VoiceType" id="voice-select">
+                    <option value="0">女性A</option>
+                    <option value="1">女性B</option>
+                    <option value="2">女性C</option>
+                    <option value="3">女性D(only English)</option>
+                    <option value="4">男性A</option>
+                    <option value="5">男性B(only English)</option>
+                </select></p>
+                <h3>ジャンル</h3>
+                <p><select name="Situation">
                     <option value="1">クール</option>
                     <option value="2">可愛い</option>
-                </select>
-            </table>
-            <input name="save" type="submit" value="投稿する">
-            <input name="next" type="submit" value="戻る">
-            </form>
+                </select></p>
+                <h3>ピッチ</h3>
+                <p> <input type="number" name ="pich",value="1",step="0.1",min="-2",max="2"></p>               
+                <h3>セリフ</h3>
+                <p><textarea name="body" cols="50" rows="5"></textarea> </p>
+                <p><input name="save" type="submit" value="投稿する">
+                </div>  
+                <p><input name="next" type="submit"  class="back" value="戻る"></p>
+            </form> 
+            
         <?php } ?>
         <?php
         if($PageNum==3){
             echo("ジャンル");?>
             <form method="post" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
+            
+            <div style="text-align:center">
+            <p>
             <select name="VoiceType">
-                    <option value="1">男性</option>
-                    <option value="2">女性</option>
+                    <option value="0">女性A</option>
+                    <option value="1">女性B</option>
+                    <option value="2">女性C</option>
+                    <option value="3">女性D(only English)</option>
+                    <option value="4">男性A</option>
+                    <option value="5">男性B(only English)</option>
                 </select>
-                <select name="Situation">
+                <p><select name="Situation">
                     <option value="1">クール</option>
                     <option value="2">可愛い</option>
-            </select>
-            <input type="hidden" name= "page" value=3>
-            <input name="SelectHome" type="submit" value="スタート">
-            <input name="back" type="submit" value="戻る">
+                </select></p>
+                <p>
+                    <input type="hidden" name= "page" value=3>
+                    <input name="SelectHome" id="Btn2" type="submit" value="スタート">
+                </p>
+            </div>
+            <input name="back" type="submit" class="back" value="戻る">
             </form>
         <?php } ?>
         <?php
@@ -136,16 +150,20 @@ if(isset($_POST["back"])){
             echo("再生");?>
 
             <?php foreach($home_list as $home){ ?>
-                <h4> <?php echo($home["body"]);?></h4>       
+                <div class="messa" style="text-align:center">
+                <?php echo($home["body"]);?>
+                </div>
                 <form id="voice-form"> 
                     <input type="hidden" name="speech" id="speech" value = <?php echo($home["body"])?> />
+                    <input type="hidden" id="voicetype" value = <?php echo($VT)?> />
+                    <input type="hidden" id="selectNum" value>
                     <input type="button" class="circlebutton" value="再生" onclick="ToSayClick();"/>
                 </form>
             <?php } ?>
 
             <form method="post" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
             <input type="hidden" name= "page" value=4>
-            <input name="back" type="submit" value="戻る">
+            <input name="back" type="submit" class="back"value="戻る">
             </form>
         <?php } ?>
         
