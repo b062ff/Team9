@@ -58,7 +58,7 @@ h3{
     text-align: center;
     overflow: hidden;
     cursor: pointer;
-    background: radial-gradient(#eedeff 0%, #fea1df 79%);
+    background: radial-gradient(#eedeff 0%, #fea1df 80%);
 }
 #Btn2{
     font-size: 3em; 
@@ -75,6 +75,61 @@ h3{
     cursor: pointer;
     background-image: radial-gradient(#eedeff 0%, #fea1df 100%);
 }
+.soap_wrap {
+	position: relative;
+	height: 260px; /*お好みで*/
+}
+.soap {
+	position: absolute;
+	left: calc(50% - 100px); /*お好みで*/
+	top: calc(50% - 100px); /*お好みで*/
+	width: 200px; /*お好みで*/
+	height: 200px; /*お好みで*/
+	border-radius: 50% 46% 48% 44%;
+	overflow: hidden;
+	background: radial-gradient(at 46% 54%, transparent 50%, rgba(2, 172, 253,0.3) 70%, transparent 100%) 50% 50% no-repeat;
+	animation: soap 10s 0s ease-in-out infinite;
+	z-index: 1;
+}
+.soap::before{
+	content: "";
+	position: absolute;
+	right: -10%;
+	bottom: -10%;
+	width: 60%;
+	height: 60%;
+	border-radius: 60% 0;
+	background: radial-gradient(at 0 0, rgba(0, 130, 255, 0.3) 40%, rgba(255, 154, 204, 0.7) 50%);
+	transform-origin: 0 0;
+	animation: soap_rotate 15s 0s ease-in-out infinite;
+	filter: blur(15px);
+}
+.soap::after{
+	content: "";
+	position: absolute;
+	left: -10%;
+	top: -10%;
+	width: 60%;
+	height: 60%;
+	border-radius: 20% 0;
+	background: radial-gradient(at 100% 100%, rgba(255, 255, 100, 0.5) 40%, rgba(120, 255, 140, 0.7) 60%);
+	transform-origin: 100% 100%;
+	animation: soap_rotate 10s 0s ease-in-out infinite;
+	filter: blur(15px);
+}
+
+@keyframes soap_rotate{
+	0%{transform: rotate(0);}
+	50%{transform: rotate(360deg);}
+}
+
+/*上下に移動 お好みで*/
+@keyframes soap{
+	0%{transform: translateY(0px);}
+	100%{transform: translateY(600px);}
+    0%{transform: perspective(500px) rotate3d(1,2,1,45deg);}
+}
+
 .back{
     background-color: greenyellow;
 }
