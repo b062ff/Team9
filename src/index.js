@@ -15,17 +15,45 @@ function VoiceSlect(num){
                 if(num==i)return actor[i];
         }
 }
+/**
+ * ボタンが押されたときに発言
+ * num:声の種類
+ * Pitch:ピッチの大きさ(0.0~2.0)
+ * speech:話す内容
+ */
 function ToSayClick(num,Pitch,speech){
         const toSay = speech;
         const utterance = new SpeechSynthesisUtterance(toSay);
         const voiceselect=VoiceSlect(num);
 
         utterance.pitch=Pitch;
-
         utterance.voice = speechSynthesis
                 .getVoices()
                 .filter(voice=>voice.name===voiceselect)[0]
 
-        utterance.pich=0.0;
         speechSynthesis.speak(utterance);
 }
+/**
+ * スライダーの値が変更されたときの表示
+ * inputElem
+ * currentValueElem
+ * 
+ */
+
+function printValue(){
+        const inputElem = document.getElementById("Range");
+        const currentValueElem = document.getElementById("current-value");
+
+        //現在の値をspanに組み込む関数
+        const setCurrentValue = (val)=>{
+        currentValueElem.innerText = val;
+        }
+        //inputイベント時に値をセットする関数
+        const rangeOnCharge = (e) =>{
+        setCurrentValue(e.target.value);
+        console.log("成功");
+        }
+        setCurrentValue(inputElem.value);
+}
+
+
