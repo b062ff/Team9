@@ -110,7 +110,8 @@ if(isset($_POST["back"])){
                     <option value="2">可愛い</option>
                 </select></p>
                 <h3>ピッチ</h3>
-                <p> <input type="number" name ="pich",value="1",step="0.1",min="0",max="2"></p>               
+                <p> <input type="range" min='0' max='2' name ="pich" id="Range" value='1' step="0.1" oninput="printValue();"></p>            
+                <p>ピッチの大きさ=<span id ="current-value">1</span></p>   
                 <h3>セリフ</h3>
                 <p><textarea name="body" cols="50" rows="5"></textarea> </p>
                 <p><input name="save" type="submit" value="投稿する">
@@ -167,8 +168,9 @@ if(isset($_POST["back"])){
             <input name="back" type="submit" class="back"value="戻る">
             </form>
         <?php } ?>
-        
-
-
+        <?php
+        if($PageNum==5){
+            echo("ランダム再生");?>
+        <?php } ?>
     </body>
 </html>
