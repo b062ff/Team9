@@ -6,9 +6,7 @@ $tosay =array();
 // 変更：MySQLに接続する
 $mysqli = new mysqli("localhost", "root", "", "home");
 $PageNum=2;
-/**
- * 確認用
- */
+
 
 
 
