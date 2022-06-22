@@ -77,22 +77,48 @@ if(isset($_POST["back"])){
           }
       }
       ?>
-
-
+        
         <?php
-        if($PageNum==2){
-            echo("start your engine");?>
-            <form method="post" style="text-align:center" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
-            <input type="hidden" name= "page" value=2>
-            <p> <input name="next" type="submit" id="Btn1" value="ほめられる"></p>
-            <p> <input name="back" type="submit" id="Btn2" value="ほめる"></p>
-            </form>
+        if($PageNum==2){;?>
+            <div class="area" >
+                <form method="post" style="text-align:center" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
+                <input type="hidden" name= "page" value=2>
+                    <ul class="circles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+            
+                        <p> <input name="next" type="submit" id="Btn1" value="ほめられる"></p>
+                        <p> <input name="back" type="submit" id="Btn2" value="ほめる"></p>
+            
+                
+                    </ul>
+                </form>
+            </div >
         <?php } ?>
         
         <?php
-        if($PageNum==1){
-            echo("投稿");?>
+        if($PageNum==1){?>
             <form method="post"  action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
+            <div class="area" >
+            <ul class="circles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
             <div style="text-align:center">
             <input type="hidden" name= "page" value=1>
                 <h3>声の種類</h3>
@@ -117,13 +143,25 @@ if(isset($_POST["back"])){
                 </div>  
                 <p><input name="next" type="submit"  class="back" value="戻る"></p>
             </form> 
+            </ul>
+            </div >
             
         <?php } ?>
         <?php
-        if($PageNum==3){
-            echo("ジャンル");?>
+        if($PageNum==3){?>
             <form method="post" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
-            
+            <div class="area" >
+            <ul class="circles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
             <div style="text-align:center">
             <p>
             <select name="VoiceType">
@@ -145,14 +183,28 @@ if(isset($_POST["back"])){
             </div>
             <input name="back" type="submit" class="back" value="戻る">
             </form>
+            </ul>
+            </div >
         <?php } ?>
         <?php
-        if($PageNum==4){
-            echo("再生");?>
+        if($PageNum==4){?>
+            <div class="area" >
+            <ul class="circles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
             <?php foreach($home_list as $home){ ?>
                 <div class="messa" style="text-align:center">
                 <?php echo($home["body"]);?>
                 </div>
+                
                 <form id="voice-form"> 
                     <?php  
                     $speech=$home["body"]; 
@@ -160,6 +212,7 @@ if(isset($_POST["back"])){
                     ?>
                     <input type="button" class="circlebutton" value="再生" onclick="ToSayClick(<?php echo($VT); ?>,<?php echo($Pitch); ?>,'<?php echo($speech); ?>');"/>
                 </form>
+                
             <?php } ?>
 
             <form method="post" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
@@ -167,6 +220,8 @@ if(isset($_POST["back"])){
             <input name="back" type="submit" class="back"value="戻る">
             </form>
         <?php } ?>
+        </ul>
+        </div >
         
 
 
