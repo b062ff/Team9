@@ -56,4 +56,24 @@ function printValue(){
         setCurrentValue(inputElem.value);
 }
 
+/**
+ * 
+ */
+ function ToSayAll(size,list){
+        console.log("check");
+        const toSay = list[0][0];
+        const utterance = new SpeechSynthesisUtterance(toSay);
+        const voiceselect=VoiceSlect(list[0][3]);
+        var i=0;
 
+        for(i=0;i<size;i++){
+                toSay = list[i][0];
+                utterance = new SpeechSynthesisUtterance(toSay);
+                utterance.pitch=list[i][2];
+                utterance.voice = speechSynthesis
+                        .getVoices()
+                        .filter(voice=>voice.name===voiceselect)[0]
+
+        }
+ }
+   
