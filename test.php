@@ -2,11 +2,10 @@
 error_reporting(E_ALL);              // エラー出力のレベルを設定します
 ini_set("display_errors", "On");     // 画面上にエラー出力を表示する設定にします
 $error_message = array();
-$tosay =array();
+$tosay =array(); 
 // 変更：MySQLに接続する
 $mysqli = new mysqli("localhost", "root", "", "home");
 $PageNum=2;
-
 
 
 //投稿されたときの処理(DBに保存)
@@ -49,6 +48,14 @@ if(isset($_POST["SelectHome"])){
         while ($home = $result->fetch_array()) {      // 変更
         $home_list[] = $home;                        // 変更
         } 
+        $i=count($home_list)-1;
+        while($i>0){
+            $j=rand()%($i+1);
+            $tmp=$home_list[$j];
+            $home_list[$j] =$home_list[$i];
+            $home_list[$i]=$tmp;
+            $i--;
+        }
     }
     
 }
@@ -84,8 +91,8 @@ if(isset($_POST["back"])){
             echo("start your engine");?>
             <form method="post" style="text-align:center" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
             <input type="hidden" name= "page" value=2>
-            <p> <input name="next" type="submit" id="Btn1" value="ほめられる"></p>
-            <p> <input name="back" type="submit" id="Btn2" value="ほめる"></p>
+            <p> <button type="submit" name="next"id="Btn1">褒められる</button></p>
+            <p> <button type="submit" name="back"id="Btn2">褒める</button></p>
             </form>
         <?php } ?>
         
@@ -114,9 +121,9 @@ if(isset($_POST["back"])){
                 <p>ピッチの大きさ=<span id ="current-value">1</span></p>   
                 <h3>セリフ</h3>
                 <p><textarea name="body" cols="50" rows="5"></textarea> </p>
-                <p><input name="save" type="submit" value="投稿する">
+                <p><button name="save" type="submit">投稿する</button>
                 </div>  
-                <p><input name="next" type="submit"  class="back" value="戻る"></p>
+                <p><button name="next" type="submit"  class="back">戻る</button></p>
             </form> 
             
         <?php } ?>
@@ -141,10 +148,10 @@ if(isset($_POST["back"])){
                 </select></p>
                 <p>
                     <input type="hidden" name= "page" value=3>
-                    <input name="SelectHome" id="Btn2" type="submit" value="スタート">
+                    <button name="SelectHome" id="Btn2" type="submit">スタート</button>
                 </p>
             </div>
-            <input name="back" type="submit" class="back" value="戻る">
+            <button name="back" type="submit" class="back">戻る</button>
             </form>
         <?php } ?>
         <?php
@@ -162,15 +169,10 @@ if(isset($_POST["back"])){
                     <input type="button" class="circlebutton" value="再生" onclick="ToSayClick(<?php echo($VT); ?>,<?php echo($Pitch); ?>,'<?php echo($speech); ?>');"/>
                 </form>
             <?php } ?>
-
             <form method="post" action="<?php echo($_SERVER["SCRIPT_NAME"])?>">
             <input type="hidden" name= "page" value=4>
-            <input name="back" type="submit" class="back"value="戻る">
+            <button name="back" type="submit" class="back">戻る</button>
             </form>
-        <?php } ?>
-        <?php
-        if($PageNum==5){
-            echo("ランダム再生");?>
         <?php } ?>
     </body>
 </html>
