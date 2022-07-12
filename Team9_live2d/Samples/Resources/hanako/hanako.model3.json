@@ -1,0 +1,37 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "hanako.moc3",
+		"Textures": [
+			"hanako.2048/texture_00.png"
+		],
+		"Physics": "hanako.physics3.json",
+		"DisplayInfo": "hanako.cdi3.json",
+		"Motions": {
+			"Idle": [
+				{
+					"File": "motion/Idle.motion3.json"
+				}
+			],
+			"TapBody": [
+				{
+					"File": "motion/hanako1.motion3.json"
+				},
+				{
+					"File": "motion/hanako2.motion3.json"
+				},
+				{
+					"File": "motion/hanako3.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	],
+	"HitAreas": []
+}
